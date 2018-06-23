@@ -1,18 +1,18 @@
-const fetchEvents = () => {
+export const fetchEvents = () => {
   return $.ajax({
     method: 'GET',
-    url: '/api/events'
+    url: 'api/events'
   });
 };
 
-const fetchEvent = id => {
+export const fetchEvent = id => {
   return $.ajax({
     method: 'GET',
     url: `/api/events/${id}`
   });
 };
 
-const createEvent = event => {
+export const createEvent = event => {
   return $.ajax({
     method: 'POST',
     url: '/api/events',
@@ -20,7 +20,7 @@ const createEvent = event => {
   });
 };
 
-const updateEvent = id => {
+export const updateEvent = id => {
   return $.ajax({
     method: 'PATCH',
     url: `/api/events/${id}`,
@@ -28,7 +28,7 @@ const updateEvent = id => {
   });
 };
 
-const deleteEvent = id => {
+export const deleteEvent = id => {
   return $.ajax({
     method: 'DELETE',
     url: `/api/events/${id}`

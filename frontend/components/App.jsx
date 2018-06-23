@@ -1,8 +1,10 @@
 import React from 'react';
+import CalendarIndex from './calendar_index.jsx';
 
 const App = () => (
   <div>
-    <h1>Calendar</h1>
+    <h1>Whoa!</h1>
+    <CalendarIndex />
   </div>
 );
 
