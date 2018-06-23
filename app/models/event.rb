@@ -4,7 +4,7 @@ class Event < ApplicationRecord
 
   def overlapping_events
   Event
-    .where.not('start > :end OR end < :start',
+    .where(':start > :end OR :end < :start',
       start: self.start, end: self.end)
   end
 
