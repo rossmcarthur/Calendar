@@ -1,11 +1,14 @@
 import React from 'react';
 import { fetchEventsByDate } from '../actions/event_actions';
+import { showModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import ShowDate from './show_date';
 
 class DateItem extends React.Component {
   constructor(props) {
     super(props);
+    this.handleShowModal = this.handleShowModal.bind(this);
   }
 
   getEvents() {
@@ -22,8 +25,22 @@ class DateItem extends React.Component {
     return events;
   }
 
+  handleShowModal() {
+    this.props.showModal(<ShowDate events={this.props.events} date={this.props.date} day={this.props.day} closeModal={this.props.closeModal}/>);
+  }
+
   render(){
     const { day } = this.props;
+    const events = this.props.events.map( (event, i) => {
+      if (moment(this.props.date).format('MMM D YYYY') ===
+          moment(event.start_time).format('MMM D YYYY')) {
+            return (
+              <div key={i}>
+                <h1>{event.description}</h1>
+              </div>
+            );
+      }
+    });
 
     if (day === 'none') {
       return (
@@ -31,7 +48,7 @@ class DateItem extends React.Component {
       );
     } else {
       return (
-        <div className='day-items'>
+        <div onClick={this.handleShowModal} className='day-items'>
           {day}
           {this.getEvents()}
         </div>
@@ -46,4 +63,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(DateItem);
+const mapDispatchToProps = dispatch => {
+  return {
+    showModal: component => dispatch(showModal(component)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DateItem);
