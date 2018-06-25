@@ -1,3 +1,5 @@
+require 'date'
+
 class Api::EventsController < ApplicationController
 
   def create
@@ -37,7 +39,7 @@ class Api::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:description, :start, :end)
+    params.require(:event).permit(:description, :start_time, :end_time, :date)
   end
 
 end

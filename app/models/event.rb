@@ -1,11 +1,11 @@
 class Event < ApplicationRecord
-  validates :description, :start, :end, :description, presence: true
+  validates :description, :start_time, :end_time, :description, presence: true
   validate :does_not_overlap_approved_request
 
   def overlapping_events
   Event
-    .where(':start > :end OR :end < :start',
-      start: self.start, end: self.end)
+    .where(':start_time > :end_time OR :end_time < :start_time',
+      start_time: self.start_time, end_time: self.end_time)
   end
 
 def does_not_overlap_approved_request
