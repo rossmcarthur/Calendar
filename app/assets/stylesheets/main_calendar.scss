@@ -1,0 +1,60 @@
+html, body, header, nav, main {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  width: 100%;
+  height: 100%;
+}
+
+div, h1, ul {
+  padding: 0;
+  margin: 0;
+}
+
+.main-calendar-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+  width: 100%;
+}
+
+.current-month {
+  font-size: 30px;
+}
+
+.days-of-week {
+  display:flex;
+  justify-content: space-around;
+}
+
+.day-name {
+  display: flex;
+  width: 14.08%;
+  justify-content: center;
+}
+
+.calendar-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.calendar-days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day-items {
+  width: 14.08%;
+  height: 150px;
+  border: 1px solid black;
+}

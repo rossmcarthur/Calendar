@@ -3,7 +3,6 @@ import { fetchEvents } from '../actions/event_actions';
 import { connect } from 'react-redux';
 import { merge } from 'lodash';
 import DateItem from './date_item';
-import WeekLabel from './week_label';
 
 const MONTHS = {
   JANUARY: 31,
@@ -38,20 +37,20 @@ class CalendarIndex extends React.Component {
     });
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.currentMonth !== this.state.currentMonth) {
-  //
-  //   }
-  // }
-
   getDays() {
     const month = this.state.currentMonth;
-    const weeks = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    let weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
     let firstDay = this.state.currentDate.setDate(1);
     const firstDate = new Date(firstDay).getDay();
-    firstDay = weeks[firstDate];
+    firstDay = weekdays[firstDate];
 
-    const fillerDays = _.range(0, firstDate + 1).map( (day, i) => {
+    const daysOfWeek = weekdays.map( (day, i) => {
+      return (
+        <li className='day-name' key={i + 100}>{day}</li>
+      );
+    });
+
+    const fillerDays = _.range(0, firstDate).map( (day, i) => {
       return (
         <DateItem day='none' date={null} key={day + 100}/>
       );
@@ -63,12 +62,19 @@ class CalendarIndex extends React.Component {
         <DateItem day={day} key={i} date={date}/>
       );
     });
-    return { fillerDays, days };
+
+    const weekHeader = (
+      <ul className='days-of-week'>
+        {daysOfWeek}
+      </ul>
+    );
+
+    return { weekHeader, fillerDays, days };
   }
 
   handleMonthChange(move) {
     let currentDate = this.state.currentDate;
-    if (move === "forward") {
+    if (move === 'forward') {
       currentDate = currentDate.setMonth(currentDate.getMonth() + 1, 1);
       currentDate = new Date(currentDate);
       this.setState({
@@ -86,16 +92,22 @@ class CalendarIndex extends React.Component {
   }
 
   render() {
-    const { days } = this.getDays();
-    const { fillerDays } = this.getDays();
+    const { weekHeader, days, fillerDays } = this.getDays();
+
     return (
-      <div>
-        <button onClick={() => this.handleMonthChange('back')}>-</button>
-        <h1>{this.state.currentMonth}</h1>
-        <button onClick={() => this.handleMonthChange('forward')}>+</button>
-        <WeekLabel />
-        {fillerDays}
-        {days}
+      <div className='main-calendar-container'>
+        <div className='calendar-header'>
+          <button onClick={() => this.handleMonthChange('back')}>-</button>
+          <h1 className='current-month'>{this.state.currentMonth}</h1>
+          <button onClick={() => this.handleMonthChange('forward')}>+</button>
+        </div>
+        <div className='calendar-body'>
+          {weekHeader}
+          <ul className='calendar-days'>
+            {fillerDays}
+            {days}
+          </ul>
+        </div>
       </div>
     );
   }
