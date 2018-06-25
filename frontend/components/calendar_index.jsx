@@ -59,7 +59,7 @@ class CalendarIndex extends React.Component {
     const days = _.range(1, MONTHS[month] + 1).map( (day, i) => {
     let date = new Date(this.state.currentDate.setDate(day));
       return (
-        <DateItem day={day} key={i} date={date}/>
+        <DateItem month={this.state.currentMonth} day={day} key={i} date={date}/>
       );
     });
 

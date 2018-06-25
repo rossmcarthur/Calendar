@@ -1,6 +1,6 @@
 import React from 'react';
-import CalendarIndex from './calendar_index.jsx';
-import Modal from './modal.jsx';
+import CalendarIndex from './calendar_index';
+import Modal from './modal';
 
 const App = () => (
   <div>

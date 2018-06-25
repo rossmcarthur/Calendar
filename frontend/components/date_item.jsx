@@ -26,7 +26,14 @@ class DateItem extends React.Component {
   }
 
   handleShowModal() {
-    this.props.showModal(<ShowDate events={this.props.events} date={this.props.date} day={this.props.day} closeModal={this.props.closeModal}/>);
+    this.props.showModal(
+      <ShowDate
+        month={this.props.month}
+        events={this.props.events}
+        date={this.props.date}
+        day={this.props.day}
+        />
+    );
   }
 
   render(){
