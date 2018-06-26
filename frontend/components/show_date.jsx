@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import CreateEvent from './create_event';
+import EventItem from './event_item';
 import { showModal, closeModal } from '../actions/modal_actions';
 
 class ShowDate extends React.Component {
@@ -15,9 +16,7 @@ class ShowDate extends React.Component {
       if (moment(this.props.date).format('MMM D YYYY') ===
           moment(event.start_time).format('MMM D YYYY')) {
             return (
-              <div key={i}>
-                <h1>{event.description}</h1>
-              </div>
+              <EventItem event={event} key={i} />
             );
       }
     });

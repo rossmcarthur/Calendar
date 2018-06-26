@@ -1,6 +1,7 @@
 import React from 'react';
 import { createEvent } from '../actions/event_actions';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 class CreateEvent extends React.Component {
   constructor(props) {
@@ -23,8 +24,10 @@ class CreateEvent extends React.Component {
 
   handleSubmit(e) {
     const { description } = this.state;
-    const start_time = new Date(this.openingDate + this.state.start_time + ":00");
-    const end_time = new Date(this.openingDate + this.state.end_time + ":00");
+    let start_time = new Date(this.openingDate + this.state.start_time + ":00");
+    let end_time = new Date(this.openingDate + this.state.end_time + ":00");
+    start_time = moment(start_time).toISOString();
+    end_time = moment(end_time).toISOString();
     e.preventDefault();
     this.props.createEvent({ description, start_time, end_time});
     this.setState({
