@@ -1,16 +1,10 @@
 import React from 'react';
-import { createEvent } from '../actions/event_actions';
-import { connect } from 'react-redux';
 import moment from 'moment';
 
-class CreateEvent extends React.Component {
+class EventForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      description: '',
-      start_time: '',
-      end_time: ''
-    };
+    this.state = this.props.event;
     this.openingDate = String(this.props.date).slice(0, 16);
     this.closingDate = String(this.props.date).slice(24);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,19 +17,23 @@ class CreateEvent extends React.Component {
   }
 
   handleSubmit(e) {
-    const { description } = this.state;
+    const { description, id } = this.state;
     let start_time = new Date(this.openingDate + this.state.start_time + ":00");
     let end_time = new Date(this.openingDate + this.state.end_time + ":00");
     start_time = moment(start_time).toISOString();
     end_time = moment(end_time).toISOString();
     e.preventDefault();
-    this.props.createEvent({ description, start_time, end_time});
-    this.setState({
-      description: '',
-      start_time: '',
-      end_time: ''
-    });
-    this.props.closeModal();
+    this.props.formAction({ description, start_time, end_time, id })
+    .then(
+      this.setState({
+        description: '',
+        start_time: '',
+        end_time: ''
+      })
+    )
+    .then(
+      this.props.closeModal()
+    );
     e.stopPropagation();
   }
 
@@ -70,10 +68,4 @@ class CreateEvent extends React.Component {
 
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    createEvent: event => dispatch(createEvent(event))
-  };
-};
-
-export default connect(null, mapDispatchToProps)(CreateEvent);
+export default EventForm;

@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import CreateEvent from './create_event';
+import CreateFormContainer from './create_form_container';
 import EventItem from './event_item';
 import { showModal, closeModal } from '../actions/modal_actions';
 
@@ -16,7 +16,13 @@ class ShowDate extends React.Component {
       if (moment(this.props.date).format('MMM D YYYY') ===
           moment(event.start_time).format('MMM D YYYY')) {
             return (
-              <EventItem event={event} key={i} />
+              <EventItem
+                key={i}
+                month={this.props.month}
+                day={this.props.day}
+                event={event}
+                date={this.props.date}
+                />
             );
       }
     });
@@ -25,7 +31,7 @@ class ShowDate extends React.Component {
 
 handleCreateEvent() {
     this.props.showModal(
-      <CreateEvent
+      <CreateFormContainer
         month={this.props.month}
         day={this.props.day}
         date={this.props.date}

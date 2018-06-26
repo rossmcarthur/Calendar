@@ -50,7 +50,9 @@ export const deleteEvent = id => dispatch => {
 };
 
 export const updateEvent = event => dispatch => {
+  debugger
   return EventAPI.updateEvent(event).then(event => {
+    debugger
     return dispatch(receiveEvent(event));
   });
 };

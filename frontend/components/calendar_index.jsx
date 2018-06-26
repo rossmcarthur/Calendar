@@ -97,9 +97,9 @@ class CalendarIndex extends React.Component {
     return (
       <div className='main-calendar-container'>
         <div className='calendar-header'>
-          <button onClick={() => this.handleMonthChange('back')}>-</button>
+          <span className='month-changer' onClick={() => this.handleMonthChange('back')}>&#8592;</span>
           <h1 className='current-month'>{this.state.currentMonth}</h1>
-          <button onClick={() => this.handleMonthChange('forward')}>+</button>
+          <span className='month-changer' onClick={() => this.handleMonthChange('forward')}>&#8594;</span>
         </div>
         <div className='calendar-body'>
           {weekHeader}

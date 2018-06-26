@@ -15,11 +15,13 @@ class DateItem extends React.Component {
     const events = this.props.events.map( (event, i) => {
       if (moment(this.props.date).format('MMM D YYYY') ===
           moment(event.start_time).format('MMM D YYYY')) {
-            return (
-              <div key={i}>
-                <h1>{event.description}</h1>
-              </div>
-            );
+            const start = moment(event.start_time).format('h:mm A');
+            const end = moment(event.end_time).format('hh:mm A');
+        return (
+          <li key={i} className='day-event-item truncate'>
+            {start}-{end}:&nbsp;{event.description}
+          </li>
+        );
       }
     });
     return events;
@@ -38,26 +40,18 @@ class DateItem extends React.Component {
 
   render(){
     const { day } = this.props;
-    const events = this.props.events.map( (event, i) => {
-      if (moment(this.props.date).format('MMM D YYYY') ===
-          moment(event.start_time).format('MMM D YYYY')) {
-            return (
-              <div key={i}>
-                <h1>{event.description}</h1>
-              </div>
-            );
-      }
-    });
 
     if (day === 'none') {
       return (
-        <div className='day-items'>EMPTY</div>
+        <div className='filler-day-items'></div>
       );
     } else {
       return (
         <div onClick={this.handleShowModal} className='day-items'>
           {day}
-          {this.getEvents()}
+          <ul className='display-event-container'>
+            {this.getEvents()}
+          </ul>
         </div>
       );
     }

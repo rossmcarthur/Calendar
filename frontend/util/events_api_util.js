@@ -20,10 +20,10 @@ export const createEvent = event => {
   });
 };
 
-export const updateEvent = id => {
+export const updateEvent = event => {
   return $.ajax({
     method: 'PATCH',
-    url: `/api/events/${id}`,
+    url: `/api/events/${event.id}`,
     data: { event }
   });
 };
