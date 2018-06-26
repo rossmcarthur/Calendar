@@ -24,23 +24,33 @@ class EventForm extends React.Component {
     end_time = moment(end_time).toISOString();
     e.preventDefault();
     this.props.formAction({ description, start_time, end_time, id })
-    .then(
-      this.setState({
-        description: '',
-        start_time: '',
-        end_time: ''
-      })
-    )
-    .then(
-      this.props.closeModal()
+    .then(() => {
+        this.setState({
+          description: '',
+          start_time: '',
+          end_time: ''
+        });
+        this.props.closeModal();
+      }
     );
     e.stopPropagation();
+  }
+
+  renderErrors() {
+    return (
+      <ul className='errors'>
+        {this.props.errors.map ((error, i) => {
+          <li className='error-message' key={i}>{error}</li>;
+        })}
+      </ul>
+    );
   }
 
   render() {
     return (
       <div>
         <form>
+          {this.renderErrors()}
           <label>{this.props.day}&nbsp;{this.props.month}</label>
           <label>Description:</label>
             <input

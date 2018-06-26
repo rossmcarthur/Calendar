@@ -33,17 +33,17 @@ export const receiveErrors = errors => {
   };
 };
 
-export const clearErrors = () => {
+export const clearEventErrors = () => {
   return {
     type: CLEAR_EVENT_ERRORS
   };
 };
 
 export const createEvent = event => dispatch => {
-  return EventAPI.createEvent(event).then(event => {
-    return dispatch(receiveEvent(event)),
-    errors => dispatch(receiveErrors(errors.responseJSON));
-  });
+  return EventAPI.createEvent(event).then(event => (
+    dispatch(receiveEvent(event)),
+    err => dispatch(receiveErrors(err.responseJSON))
+  ));
 };
 
 export const fetchEvents = () => dispatch => {

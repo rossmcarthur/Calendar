@@ -41,12 +41,12 @@ handleCreateEvent() {
   }
 
   render() {
-    const { day } = this.props;
+    const { day, month } = this.props;
     return (
       <div className='show-date-container'>
-        <h1>{day}</h1>
-        <h1>{this.getEvents()}</h1>
-        <button onClick={this.handleCreateEvent}>Create Event</button>
+        <h1 className='show-day'>{month}&nbsp;{day}</h1>
+        <ul className='show-event-list'>{this.getEvents()}</ul>
+        <button className='create-button' onClick={this.handleCreateEvent}>Create Event</button>
       </div>
     );
   }

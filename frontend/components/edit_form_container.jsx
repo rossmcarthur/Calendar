@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateEvent } from '../actions/event_actions';
+import { updateEvent, clearEventErrors } from '../actions/event_actions';
 import { closeModal } from '../actions/modal_actions';
 import EventForm from './event_form';
 import moment from 'moment';
@@ -14,14 +14,15 @@ const mapStateToProps = (state, ownProps) => {
       end_time: moment(selectedEvent.end_time).format("hh:mm"),
       id: ownProps.eventId
     },
-    formType: "edit"
+    errors: state.errors
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     formAction: event => dispatch(updateEvent(event)),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    clearEventErrors: () => dispatch(clearEventErrors())
   };
 };
 

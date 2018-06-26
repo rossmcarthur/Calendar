@@ -19,7 +19,7 @@ class DateItem extends React.Component {
             const end = moment(event.end_time).format('hh:mm A');
         return (
           <li key={i} className='day-event-item truncate'>
-            {start}-{end}:&nbsp;{event.description}
+            {event.description}&nbsp;{start}-{end}
           </li>
         );
       }
@@ -40,7 +40,6 @@ class DateItem extends React.Component {
 
   render(){
     const { day } = this.props;
-
     if (day === 'none') {
       return (
         <div className='filler-day-items'></div>

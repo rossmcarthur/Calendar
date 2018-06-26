@@ -34,16 +34,18 @@ class EventItem extends React.Component {
     const end = moment(event.end_time).format("h:mm A");
 
     return (
-      <div>
-        <ul>
+      <ul className='event-item-list'>
+        <div className='event-item-content'>
           <li>{start}</li>
-          -
+          &nbsp;-&nbsp;
           <li>{end}</li>
-          <li>{event.description}</li>
-          <button onClick={this.handleEdit}>Edit</button>
-          <button onClick={this.handleDelete}>Delete</button>
-        </ul>
-      </div>
+        </div>
+        <li>Description: {event.description}</li>
+        <div className='event-item-buttons'>
+          <button className='edit-delete' onClick={this.handleEdit}>Edit</button>
+          <button className='edit-delete'onClick={this.handleDelete}>Delete</button>
+        </div>
+      </ul>
     );
 
   }

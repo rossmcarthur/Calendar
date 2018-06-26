@@ -10,6 +10,10 @@ html, body, header, nav, main {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+li {
+  list-style: none;
+}
+
 div, h1, ul {
   padding: 0;
   margin: 0;
@@ -35,6 +39,7 @@ div, h1, ul {
 .modal-conatiner {
   margin: auto;
   background: white;
+  border-radius: 10px;
 }
 
 .calendar-header {
@@ -111,4 +116,52 @@ div, h1, ul {
   border: 3px solid #2796DD;
   background-color: #2AA3EF;
   margin: 5px;
+}
+
+.show-date-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  padding: 10px;
+}
+
+.create-button {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+
+.show-event-list {
+  overflow: scroll;
+}
+
+.event-item-list {
+  position:relative;
+  background-color: #2AA3EF;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.event-item-content {
+  display: flex;
+}
+
+.event-item-buttons {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.edit-delete{
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  margin: 1px;
 }
