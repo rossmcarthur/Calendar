@@ -26,7 +26,11 @@ class Api::EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    ordered_events = [];
+    Event.order(:start_time).each do |event|
+      ordered_events << event
+    end
+    @events = ordered_events
     render :index
   end
 
