@@ -4,7 +4,6 @@ import { createEvent, clearEventErrors } from '../actions/event_actions';
 import EventForm from './event_form';
 
 const mapStateToProps = state => {
-  debugger
   return {
     event: {
       description: '',

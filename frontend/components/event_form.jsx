@@ -31,48 +31,57 @@ class EventForm extends React.Component {
           end_time: ''
         });
         this.props.closeModal();
+        this.props.clearEventErrors();
       }
     );
     e.stopPropagation();
   }
 
   renderErrors() {
-    return (
-      <ul className='errors'>
-        {this.props.errors.map ((error, i) => {
-          <li className='error-message' key={i}>{error}</li>;
-        })}
-      </ul>
-    );
+
+    if (this.props.errors.length > 0) {
+      return (
+        <ul className='errors'>
+          {this.props.errors.map ((error, i) => {
+            return <li className='error-message' key={i}>{error}</li>;
+          })}
+        </ul>
+      );
+    } else {
+      return null;
+    }
   }
 
   render() {
     return (
-      <div>
-        <form>
-          {this.renderErrors()}
-          <label>{this.props.day}&nbsp;{this.props.month}</label>
-          <label>Description:</label>
+      <form className='create-edit-form'>
+        <label>{this.props.day}&nbsp;{this.props.month}</label>
+        {this.renderErrors()}
+        <div className='create-edit-content'>
+          <div className='create-edit-times'>
+            <label>Start time:</label>
             <input
+              type='time'
+              value={this.state.start_time}
+              onChange={this.update('start_time')}
+              />
+            <label>End Time:</label>
+            <input
+              type='time'
+              value={this.state.end_time}
+              onChange={this.update('end_time')}
+              />
+          </div>
+          <label className='create-edit-label'>Description:</label>
+            <textarea
+              className='form-description-box'
               type='textarea'
               value={this.state.description}
               onChange={this.update('description')}
               />
-          <label>Start time:</label>
-          <input
-            type='time'
-            value={this.state.start_time}
-            onChange={this.update('start_time')}
-            />
-        <label>End Time:</label>
-        <input
-          type='time'
-          value={this.state.end_time}
-          onChange={this.update('end_time')}
-          />
-        <button onClick={this.handleSubmit}>Submit</button>
+          </div>
+          <button className='create-edit-submit' onClick={this.handleSubmit}>Submit</button>
         </form>
-      </div>
     );
   }
 

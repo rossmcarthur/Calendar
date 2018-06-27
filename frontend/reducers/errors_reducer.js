@@ -1,4 +1,5 @@
-import { RECEIVE_EVENT_ERRORS, CLEAR_EVENT_ERRORS } from "../actions/event_actions";
+import {  RECEIVE_EVENT_ERRORS, CLEAR_EVENT_ERRORS  } from "../actions/event_actions";
+import { merge } from 'lodash';
 
 export default (state = [], action) => {
   Object.freeze(state);

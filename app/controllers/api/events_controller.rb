@@ -12,9 +12,11 @@ class Api::EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
+    @event = Event.find_by(id: params[:id])
     if @event.update_attributes(event_params)
       render :show
+    else
+      render json: @event.errors.full_messages, status: 422
     end
   end
 

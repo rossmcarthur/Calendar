@@ -10,6 +10,10 @@ html, body, header, nav, main {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+main {
+  margin-top: 20px;
+}
+
 li {
   list-style: none;
 }
@@ -47,30 +51,31 @@ div, h1, ul {
   justify-content: space-around;
   margin: auto;
   height: 50px;
-  width: 300px;
+  width: 500px;
 }
 
 .current-month {
+  display: flex;
+  justify-content: center;
   font-size: 30px;
+  width: 400px;
 }
-.calendar-days {
-  padding: 10px;
-}
+
 .month-changer {
   align-items: center;
   font-size: 30px;
   cursor: pointer;
+  padding: 0 20px 0 20px;
 }
 
 .days-of-week {
   display:flex;
   justify-content: space-around;
-  padding: 10px;
+  padding-bottom: 15px;
 }
 
 .day-name {
   display: flex;
-  width: 14.08%;
   justify-content: center;
 }
 
@@ -86,7 +91,7 @@ div, h1, ul {
 }
 
 .day-items {
-  width: 14.08%;
+  width: 13.5%;
   height: 150px;
   border: 1px solid black;
   cursor: pointer;
@@ -95,7 +100,7 @@ div, h1, ul {
 
 .filler-day-items {
   background-color: rgba(0, 0, 0, 0.4);
-  width: 14.08%;
+  width: 13.5%;
   height: 150px;
   border: 1px solid black;
   cursor: pointer;
@@ -164,4 +169,60 @@ div, h1, ul {
   color: white;
   cursor: pointer;
   margin: 1px;
+}
+
+.create-edit-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.form-description-box {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  border-radius: 5px;
+}
+
+.create-edit-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.create-edit-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 35px;
+  height: 70%;
+}
+
+.create-edit-label {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-edit-submit {
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+
+.errors {
+  color: red;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 10px;
 }

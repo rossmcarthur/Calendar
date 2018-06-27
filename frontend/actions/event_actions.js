@@ -40,36 +40,41 @@ export const clearEventErrors = () => {
 };
 
 export const createEvent = event => dispatch => {
-  return EventAPI.createEvent(event).then(event => (
-    dispatch(receiveEvent(event)),
-    err => dispatch(receiveErrors(err.responseJSON))
-  ));
+  return EventAPI.createEvent(event).then(event => {
+    return dispatch(receiveEvent(event));
+  },
+    errors => dispatch(receiveErrors(errors.responseJSON))
+  );
 };
 
 export const fetchEvents = () => dispatch => {
   return EventAPI.fetchEvents().then(events => {
-    return dispatch(receiveAllEvents(events)),
-    errors => dispatch(receiveErrors(errors.responseJSON));
-  });
+    return dispatch(receiveAllEvents(events));
+  },
+    errors => dispatch(receiveErrors(errors.responseJSON))
+  );
 };
 
 export const fetchEvent = id => dispatch => {
   return EventAPI.fetchEvent(id).then(event => {
-    return dispatch(receiveEvent(event)),
-    errors => dispatch(receiveErrors(errors.responseJSON));
-  });
+    return dispatch(receiveEvent(event));
+  },
+    errors => dispatch(receiveErrors(errors.responseJSON))
+  );
 };
 
 export const deleteEvent = id => dispatch => {
   return EventAPI.deleteEvent(id).then(event => {
-    return dispatch(removeEvent(event)),
-    errors => dispatch(receiveErrors(errors.responseJSON));
-  });
+    return dispatch(removeEvent(event));
+  },
+    errors => dispatch(receiveErrors(errors.responseJSON))
+  );
 };
 
 export const updateEvent = event => dispatch => {
   return EventAPI.updateEvent(event).then(event => {
-    return dispatch(receiveEvent(event)),
-    errors => dispatch(receiveErrors(errors.responseJSON));
-  });
+    return dispatch(receiveEvent(event));
+  },
+    errors => dispatch(receiveErrors(errors.responseJSON))
+  );
 };

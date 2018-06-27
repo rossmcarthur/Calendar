@@ -42,7 +42,7 @@ class CalendarIndex extends React.Component {
     let weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
     let firstDay = this.state.currentDate.setDate(1);
     const firstDate = new Date(firstDay).getDay();
-    firstDay = weekdays[firstDate];
+    const year = this.state.currentDate.getFullYear();
 
     const daysOfWeek = weekdays.map( (day, i) => {
       return (
@@ -69,7 +69,7 @@ class CalendarIndex extends React.Component {
       </ul>
     );
 
-    return { weekHeader, fillerDays, days };
+    return { year, weekHeader, fillerDays, days };
   }
 
   handleMonthChange(move) {
@@ -92,13 +92,13 @@ class CalendarIndex extends React.Component {
   }
 
   render() {
-    const { weekHeader, days, fillerDays } = this.getDays();
+    const { year, weekHeader, days, fillerDays } = this.getDays();
 
     return (
       <div className='main-calendar-container'>
         <div className='calendar-header'>
           <span className='month-changer' onClick={() => this.handleMonthChange('back')}>&#8592;</span>
-          <h1 className='current-month'>{this.state.currentMonth}</h1>
+          <h1 className='current-month'>{this.state.currentMonth}, {year}</h1>
           <span className='month-changer' onClick={() => this.handleMonthChange('forward')}>&#8594;</span>
         </div>
         <div className='calendar-body'>
