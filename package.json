@@ -17,7 +17,7 @@
     "redux-thunk": "^2.3.0",
     "webpack": "^4.12.0"
   },
-  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "description": "",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
@@ -27,11 +27,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --watch --mode development --module-bind js=babel-loader",
-    "build": "webpack --mode production --module-bind js=babel-loader"
+    "build": "webpack --mode production",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rossmcarthur/Calendar.git"
+  },
+  "engines": {
+    "node": "8.4.0",
+    "npm": "6.1.0"
   },
   "keywords": [],
   "author": "",
