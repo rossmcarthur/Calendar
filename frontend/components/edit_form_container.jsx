@@ -10,8 +10,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     event: {
       description: selectedEvent.description,
-      start_time: moment(selectedEvent.start_time).format("hh:mm"),
-      end_time: moment(selectedEvent.end_time).format("hh:mm"),
+      start_time: moment(selectedEvent.start_time).format("HH:mm"),
+      end_time: moment(selectedEvent.end_time).format("HH:mm"),
       id: ownProps.eventId
     },
     errors: state.errors
